@@ -1,6 +1,6 @@
 using System.Threading;
 
-namespace Hebron.Runtime;
+namespace StbImageSharp.Hebron.Runtime;
 
 internal static class MemoryStats
 {

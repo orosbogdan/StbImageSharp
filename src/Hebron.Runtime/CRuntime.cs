@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
-
-namespace Hebron.Runtime;
+ 
+namespace StbImageSharp.Hebron.Runtime;
 
 internal static unsafe class CRuntime
 {

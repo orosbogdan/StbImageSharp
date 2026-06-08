@@ -1,4 +1,5 @@
-using Hebron.Runtime;
+using StbImageSharp.Hebron.Runtime;
+using System;
 using System.IO;
 
 namespace StbImageSharp;
