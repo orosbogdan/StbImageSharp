@@ -6,7 +6,7 @@ namespace StbImageSharp
 {
 	unsafe partial class StbImage
 	{
-		public static int stbi__tga_test(stbi__context s)
+		internal static int stbi__tga_test(stbi__context s)
 		{
 			var res = 0;
 			var sz = 0;
@@ -48,7 +48,7 @@ namespace StbImageSharp
 			return res;
 		}
 
-		public static void* stbi__tga_load(stbi__context s, int* x, int* y, int* comp, int req_comp,
+		internal static void* stbi__tga_load(stbi__context s, int* x, int* y, int* comp, int req_comp,
 			stbi__result_info* ri)
 		{
 			int tga_offset = stbi__get8(s);
@@ -236,7 +236,7 @@ namespace StbImageSharp
 			return tga_data;
 		}
 
-		public static int stbi__tga_info(stbi__context s, int* x, int* y, int* comp)
+		internal static int stbi__tga_info(stbi__context s, int* x, int* y, int* comp)
 		{
 			var tga_w = 0;
 			var tga_h = 0;
@@ -333,7 +333,7 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static int stbi__tga_get_comp(int bits_per_pixel, int is_grey, int* is_rgb16)
+		internal static int stbi__tga_get_comp(int bits_per_pixel, int is_grey, int* is_rgb16)
 		{
 			if (is_rgb16 != null)
 				*is_rgb16 = 0;
@@ -356,7 +356,7 @@ namespace StbImageSharp
 			}
 		}
 
-		public static void stbi__tga_read_rgb16(stbi__context s, byte* _out_)
+		internal static void stbi__tga_read_rgb16(stbi__context s, byte* _out_)
 		{
 			var px = (ushort)stbi__get16le(s);
 			ushort fiveBitMask = 31;

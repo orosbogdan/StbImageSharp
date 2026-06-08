@@ -1,12 +1,14 @@
-﻿namespace StbImageSharp
-{
+namespace StbImageSharp;
+
 #if !STBSHARP_INTERNAL
-	public
+public
 #else
-	internal
+internal
 #endif
-	class AnimatedFrameResult : ImageResult
-	{
-		public int DelayInMs { get; set; }
-	}
+sealed class AnimatedFrameResult : ImageResult
+{
+	/// <summary>
+	/// Gets the delay for this frame in milliseconds.
+	/// </summary>
+	public int DelayInMs { get; internal set; }
 }

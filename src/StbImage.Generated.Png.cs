@@ -7,20 +7,20 @@ namespace StbImageSharp
 {
 	unsafe partial class StbImage
 	{
-		public const int STBI__F_none = 0;
-		public const int STBI__F_sub = 1;
-		public const int STBI__F_up = 2;
-		public const int STBI__F_avg = 3;
-		public const int STBI__F_paeth = 4;
-		public const int STBI__F_avg_first = 5;
+		internal const int STBI__F_none = 0;
+		internal const int STBI__F_sub = 1;
+		internal const int STBI__F_up = 2;
+		internal const int STBI__F_avg = 3;
+		internal const int STBI__F_paeth = 4;
+		internal const int STBI__F_avg_first = 5;
 
-		public static byte[] first_row_filter =
+		internal static byte[] first_row_filter =
 			{ STBI__F_none, STBI__F_sub, STBI__F_none, STBI__F_avg_first, STBI__F_sub };
 
-		public static byte[] stbi__check_png_header_png_sig = { 137, 80, 78, 71, 13, 10, 26, 10 };
-		public static byte[] stbi__depth_scale_table = { 0, 0xff, 0x55, 0, 0x11, 0, 0, 0, 0x01 };
+		internal static byte[] stbi__check_png_header_png_sig = { 137, 80, 78, 71, 13, 10, 26, 10 };
+		internal static byte[] stbi__depth_scale_table = { 0, 0xff, 0x55, 0, 0x11, 0, 0, 0, 0x01 };
 
-		public static int stbi__png_test(stbi__context s)
+		internal static int stbi__png_test(stbi__context s)
 		{
 			var r = 0;
 			r = stbi__check_png_header(s);
@@ -28,7 +28,7 @@ namespace StbImageSharp
 			return r;
 		}
 
-		public static void* stbi__png_load(stbi__context s, int* x, int* y, int* comp, int req_comp,
+		internal static void* stbi__png_load(stbi__context s, int* x, int* y, int* comp, int req_comp,
 			stbi__result_info* ri)
 		{
 			var p = new stbi__png();
@@ -36,14 +36,14 @@ namespace StbImageSharp
 			return stbi__do_png(p, x, y, comp, req_comp, ri);
 		}
 
-		public static int stbi__png_info(stbi__context s, int* x, int* y, int* comp)
+		internal static int stbi__png_info(stbi__context s, int* x, int* y, int* comp)
 		{
 			var p = new stbi__png();
 			p.s = s;
 			return stbi__png_info_raw(p, x, y, comp);
 		}
 
-		public static int stbi__png_is16(stbi__context s)
+		internal static int stbi__png_is16(stbi__context s)
 		{
 			var p = new stbi__png();
 			p.s = s;
@@ -58,7 +58,7 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static stbi__pngchunk stbi__get_chunk_header(stbi__context s)
+		internal static stbi__pngchunk stbi__get_chunk_header(stbi__context s)
 		{
 			var c = new stbi__pngchunk();
 			c.length = stbi__get32be(s);
@@ -66,7 +66,7 @@ namespace StbImageSharp
 			return c;
 		}
 
-		public static int stbi__check_png_header(stbi__context s)
+		internal static int stbi__check_png_header(stbi__context s)
 		{
 			var i = 0;
 			for (i = 0; i < 8; ++i)
@@ -76,7 +76,7 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static int stbi__paeth(int a, int b, int c)
+		internal static int stbi__paeth(int a, int b, int c)
 		{
 			var thresh = c * 3 - (a + b);
 			var lo = a < b ? a : b;
@@ -86,7 +86,7 @@ namespace StbImageSharp
 			return t1;
 		}
 
-		public static void stbi__create_png_alpha_expand8(byte* dest, byte* src, uint x, int img_n)
+		internal static void stbi__create_png_alpha_expand8(byte* dest, byte* src, uint x, int img_n)
 		{
 			var i = 0;
 			if (img_n == 1)
@@ -106,7 +106,7 @@ namespace StbImageSharp
 		}
 
 
-		public static int stbi__create_png_image_raw(stbi__png a, byte* raw, uint raw_len, int out_n, uint x, uint y,
+		internal static int stbi__create_png_image_raw(stbi__png a, byte* raw, uint raw_len, int out_n, uint x, uint y,
 			int depth, int color)
 		{
 			var bytes = depth == 16 ? 2 : 1;
@@ -277,7 +277,7 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static int stbi__create_png_image(stbi__png a, byte* image_data, uint image_data_len, int out_n,
+		internal static int stbi__create_png_image(stbi__png a, byte* image_data, uint image_data_len, int out_n,
 			int depth, int color, int interlaced)
 		{
 			var bytes = depth == 16 ? 2 : 1;
@@ -331,7 +331,7 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static int stbi__compute_transparency(stbi__png z, byte* tc, int out_n)
+		internal static int stbi__compute_transparency(stbi__png z, byte* tc, int out_n)
 		{
 			var s = z.s;
 			uint i = 0;
@@ -354,7 +354,7 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static int stbi__compute_transparency16(stbi__png z, ushort* tc, int out_n)
+		internal static int stbi__compute_transparency16(stbi__png z, ushort* tc, int out_n)
 		{
 			var s = z.s;
 			uint i = 0;
@@ -377,7 +377,7 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static int stbi__expand_png_palette(stbi__png a, byte* palette, int len, int pal_img_n)
+		internal static int stbi__expand_png_palette(stbi__png a, byte* palette, int len, int pal_img_n)
 		{
 			uint i = 0;
 			var pixel_count = a.s.img_x * a.s.img_y;
@@ -413,7 +413,7 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static void stbi__de_iphone(stbi__png z)
+		internal static void stbi__de_iphone(stbi__png z)
 		{
 			var s = z.s;
 			uint i = 0;
@@ -464,7 +464,7 @@ namespace StbImageSharp
 			}
 		}
 
-		public static int stbi__parse_png_file(stbi__png z, int scan, int req_comp)
+		internal static int stbi__parse_png_file(stbi__png z, int scan, int req_comp)
 		{
 			var palette = stackalloc byte[1024];
 			byte pal_img_n = 0;
@@ -723,11 +723,12 @@ namespace StbImageSharp
 							return stbi__err("first not IHDR");
 						if ((c.type & (1 << 29)) == 0)
 						{
-							stbi__parse_png_file_invalid_chunk[0] = (char)((c.type >> 24) & 255);
-							stbi__parse_png_file_invalid_chunk[1] = (char)((c.type >> 16) & 255);
-							stbi__parse_png_file_invalid_chunk[2] = (char)((c.type >> 8) & 255);
-							stbi__parse_png_file_invalid_chunk[3] = (char)((c.type >> 0) & 255);
-							return stbi__err(new string(stbi__parse_png_file_invalid_chunk));
+							Span<char> invalidChunk = stackalloc char[4];
+							invalidChunk[0] = (char)((c.type >> 24) & 255);
+							invalidChunk[1] = (char)((c.type >> 16) & 255);
+							invalidChunk[2] = (char)((c.type >> 8) & 255);
+							invalidChunk[3] = (char)((c.type >> 0) & 255);
+							return stbi__err(new string(invalidChunk));
 						}
 
 						stbi__skip(s, (int)c.length);
@@ -738,7 +739,7 @@ namespace StbImageSharp
 			}
 		}
 
-		public static void* stbi__do_png(stbi__png p, int* x, int* y, int* n, int req_comp, stbi__result_info* ri)
+		internal static void* stbi__do_png(stbi__png p, int* x, int* y, int* n, int req_comp, stbi__result_info* ri)
 		{
 			void* result = null;
 			if (req_comp < 0 || req_comp > 4)
@@ -779,7 +780,7 @@ namespace StbImageSharp
 			return result;
 		}
 
-		public static int stbi__png_info_raw(stbi__png p, int* x, int* y, int* comp)
+		internal static int stbi__png_info_raw(stbi__png p, int* x, int* y, int* comp)
 		{
 			if (stbi__parse_png_file(p, STBI__SCAN_header, 0) == 0)
 			{
@@ -796,20 +797,20 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public class stbi__png
+		internal class stbi__png
 		{
-			public byte* _out_;
-			public int depth;
-			public byte* expanded;
-			public byte* idata;
-			public stbi__context s;
+			internal byte* _out_;
+			internal int depth;
+			internal byte* expanded;
+			internal byte* idata;
+			internal stbi__context s;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
-		public struct stbi__pngchunk
+		internal struct stbi__pngchunk
 		{
-			public uint length;
-			public uint type;
+			internal uint length;
+			internal uint type;
 		}
 	}
 }

@@ -7,10 +7,10 @@ namespace StbImageSharp
 {
 	unsafe partial class StbImage
 	{
-		public static byte[] stbi__zdefault_distance =
+		internal static byte[] stbi__zdefault_distance =
 			{ 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
 
-		public static byte[] stbi__zdefault_length =
+		internal static byte[] stbi__zdefault_length =
 		{
 			8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
 			8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
@@ -22,25 +22,25 @@ namespace StbImageSharp
 			9, 9, 9, 9, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8
 		};
 
-		public static int[] stbi__zdist_base =
+		internal static int[] stbi__zdist_base =
 		{
 			1, 2, 3, 4, 5, 7, 9, 13, 17, 25, 33, 49, 65, 97, 129, 193, 257, 385, 513, 769, 1025, 1537, 2049, 3073, 4097,
 			6145, 8193, 12289, 16385, 24577, 0, 0
 		};
 
-		public static int[] stbi__zdist_extra =
+		internal static int[] stbi__zdist_extra =
 			{ 0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 0, 0 };
 
-		public static int[] stbi__zlength_base =
+		internal static int[] stbi__zlength_base =
 		{
 			3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15, 17, 19, 23, 27, 31, 35, 43, 51, 59, 67, 83, 99, 115, 131, 163, 195,
 			227, 258, 0, 0
 		};
 
-		public static int[] stbi__zlength_extra =
+		internal static int[] stbi__zlength_extra =
 			{ 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0, 0, 0 };
 
-		public static sbyte* stbi_zlib_decode_malloc_guesssize(sbyte* buffer, int len, int initial_size, int* outlen)
+		internal static sbyte* stbi_zlib_decode_malloc_guesssize(sbyte* buffer, int len, int initial_size, int* outlen)
 		{
 			var a = new stbi__zbuf();
 			var p = (sbyte*)stbi__malloc((ulong)initial_size);
@@ -59,7 +59,7 @@ namespace StbImageSharp
 			return null;
 		}
 
-		public static sbyte* stbi_zlib_decode_malloc_guesssize_headerflag(sbyte* buffer, int len, int initial_size,
+		internal static sbyte* stbi_zlib_decode_malloc_guesssize_headerflag(sbyte* buffer, int len, int initial_size,
 			int* outlen, int parse_header)
 		{
 			var a = new stbi__zbuf();
@@ -79,12 +79,12 @@ namespace StbImageSharp
 			return null;
 		}
 
-		public static sbyte* stbi_zlib_decode_malloc(sbyte* buffer, int len, int* outlen)
+		internal static sbyte* stbi_zlib_decode_malloc(sbyte* buffer, int len, int* outlen)
 		{
 			return stbi_zlib_decode_malloc_guesssize(buffer, len, 16384, outlen);
 		}
 
-		public static int stbi_zlib_decode_buffer(sbyte* obuffer, int olen, sbyte* ibuffer, int ilen)
+		internal static int stbi_zlib_decode_buffer(sbyte* obuffer, int olen, sbyte* ibuffer, int ilen)
 		{
 			var a = new stbi__zbuf();
 			a.zbuffer = (byte*)ibuffer;
@@ -94,7 +94,7 @@ namespace StbImageSharp
 			return -1;
 		}
 
-		public static sbyte* stbi_zlib_decode_noheader_malloc(sbyte* buffer, int len, int* outlen)
+		internal static sbyte* stbi_zlib_decode_noheader_malloc(sbyte* buffer, int len, int* outlen)
 		{
 			var a = new stbi__zbuf();
 			var p = (sbyte*)stbi__malloc(16384);
@@ -113,7 +113,7 @@ namespace StbImageSharp
 			return null;
 		}
 
-		public static int stbi_zlib_decode_noheader_buffer(sbyte* obuffer, int olen, sbyte* ibuffer, int ilen)
+		internal static int stbi_zlib_decode_noheader_buffer(sbyte* obuffer, int olen, sbyte* ibuffer, int ilen)
 		{
 			var a = new stbi__zbuf();
 			a.zbuffer = (byte*)ibuffer;
@@ -123,7 +123,7 @@ namespace StbImageSharp
 			return -1;
 		}
 
-		public static int stbi__zbuild_huffman(stbi__zhuffman* z, byte* sizelist, int num)
+		internal static int stbi__zbuild_huffman(stbi__zhuffman* z, byte* sizelist, int num)
 		{
 			var i = 0;
 			var k = 0;
@@ -182,17 +182,17 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static int stbi__zeof(stbi__zbuf* z)
+		internal static int stbi__zeof(stbi__zbuf* z)
 		{
 			return z->zbuffer >= z->zbuffer_end ? 1 : 0;
 		}
 
-		public static byte stbi__zget8(stbi__zbuf* z)
+		internal static byte stbi__zget8(stbi__zbuf* z)
 		{
 			return (byte)(stbi__zeof(z) != 0 ? 0 : *z->zbuffer++);
 		}
 
-		public static void stbi__fill_bits(stbi__zbuf* z)
+		internal static void stbi__fill_bits(stbi__zbuf* z)
 		{
 			do
 			{
@@ -207,7 +207,7 @@ namespace StbImageSharp
 			} while (z->num_bits <= 24);
 		}
 
-		public static uint stbi__zreceive(stbi__zbuf* z, int n)
+		internal static uint stbi__zreceive(stbi__zbuf* z, int n)
 		{
 			uint k = 0;
 			if (z->num_bits < n)
@@ -218,7 +218,7 @@ namespace StbImageSharp
 			return k;
 		}
 
-		public static int stbi__zhuffman_decode_slowpath(stbi__zbuf* a, stbi__zhuffman* z)
+		internal static int stbi__zhuffman_decode_slowpath(stbi__zbuf* a, stbi__zhuffman* z)
 		{
 			var b = 0;
 			var s = 0;
@@ -240,7 +240,7 @@ namespace StbImageSharp
 			return z->value[b];
 		}
 
-		public static int stbi__zhuffman_decode(stbi__zbuf* a, stbi__zhuffman* z)
+		internal static int stbi__zhuffman_decode(stbi__zbuf* a, stbi__zhuffman* z)
 		{
 			var b = 0;
 			var s = 0;
@@ -276,7 +276,7 @@ namespace StbImageSharp
 			return stbi__zhuffman_decode_slowpath(a, z);
 		}
 
-		public static int stbi__zexpand(stbi__zbuf* z, sbyte* zout, int n)
+		internal static int stbi__zexpand(stbi__zbuf* z, sbyte* zout, int n)
 		{
 			sbyte* q;
 			uint cur = 0;
@@ -305,7 +305,7 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static int stbi__parse_huffman_block(stbi__zbuf* a)
+		internal static int stbi__parse_huffman_block(stbi__zbuf* a)
 		{
 			var zout = a->zout;
 			for (; ; )
@@ -381,7 +381,7 @@ namespace StbImageSharp
 			}
 		}
 
-		public static int stbi__compute_huffman_codes(stbi__zbuf* a)
+		internal static int stbi__compute_huffman_codes(stbi__zbuf* a)
 		{
 			var z_codelength = new stbi__zhuffman();
 			var lencodes = stackalloc byte[455];
@@ -450,7 +450,7 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static int stbi__parse_uncompressed_block(stbi__zbuf* a)
+		internal static int stbi__parse_uncompressed_block(stbi__zbuf* a)
 		{
 			var header = stackalloc byte[4];
 			var len = 0;
@@ -486,7 +486,7 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static int stbi__parse_zlib_header(stbi__zbuf* a)
+		internal static int stbi__parse_zlib_header(stbi__zbuf* a)
 		{
 			int cmf = stbi__zget8(a);
 			var cm = cmf & 15;
@@ -502,7 +502,7 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static int stbi__parse_zlib(stbi__zbuf* a, int parse_header)
+		internal static int stbi__parse_zlib(stbi__zbuf* a, int parse_header)
 		{
 			var final = 0;
 			var type = 0;
@@ -555,7 +555,7 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static int stbi__do_zlib(stbi__zbuf* a, sbyte* obuf, int olen, int exp, int parse_header)
+		internal static int stbi__do_zlib(stbi__zbuf* a, sbyte* obuf, int olen, int exp, int parse_header)
 		{
 			a->zout_start = obuf;
 			a->zout = obuf;
@@ -565,30 +565,30 @@ namespace StbImageSharp
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
-		public struct stbi__zbuf
+		internal struct stbi__zbuf
 		{
-			public byte* zbuffer;
-			public byte* zbuffer_end;
-			public int num_bits;
-			public int hit_zeof_once;
-			public uint code_buffer;
-			public sbyte* zout;
-			public sbyte* zout_start;
-			public sbyte* zout_end;
-			public int z_expandable;
-			public stbi__zhuffman z_length;
-			public stbi__zhuffman z_distance;
+			internal byte* zbuffer;
+			internal byte* zbuffer_end;
+			internal int num_bits;
+			internal int hit_zeof_once;
+			internal uint code_buffer;
+			internal sbyte* zout;
+			internal sbyte* zout_start;
+			internal sbyte* zout_end;
+			internal int z_expandable;
+			internal stbi__zhuffman z_length;
+			internal stbi__zhuffman z_distance;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
-		public struct stbi__zhuffman
+		internal struct stbi__zhuffman
 		{
-			public fixed ushort fast[512];
-			public fixed ushort firstcode[16];
-			public fixed int maxcode[17];
-			public fixed ushort firstsymbol[16];
-			public fixed byte size[288];
-			public fixed ushort value[288];
+			internal fixed ushort fast[512];
+			internal fixed ushort firstcode[16];
+			internal fixed int maxcode[17];
+			internal fixed ushort firstsymbol[16];
+			internal fixed byte size[288];
+			internal fixed ushort value[288];
 		}
 	}
 }

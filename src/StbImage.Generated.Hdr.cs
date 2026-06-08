@@ -6,7 +6,7 @@ namespace StbImageSharp
 {
 	unsafe partial class StbImage
 	{
-		public static int stbi__hdr_test(stbi__context s)
+		internal static int stbi__hdr_test(stbi__context s)
 		{
 			var r = stbi__hdr_test_core(s, "#?RADIANCE\n");
 			stbi__rewind(s);
@@ -19,7 +19,7 @@ namespace StbImageSharp
 			return r;
 		}
 
-		public static float* stbi__hdr_load(stbi__context s, int* x, int* y, int* comp, int req_comp,
+		internal static float* stbi__hdr_load(stbi__context s, int* x, int* y, int* comp, int req_comp,
 			stbi__result_info* ri)
 		{
 			var rgbe = stackalloc byte[4];
@@ -203,7 +203,7 @@ namespace StbImageSharp
 			return hdr_data;
 		}
 
-		public static int stbi__hdr_info(stbi__context s, int* x, int* y, int* comp)
+		internal static int stbi__hdr_info(stbi__context s, int* x, int* y, int* comp)
 		{
 			var buffer = stackalloc sbyte[1024];
 			sbyte* token;
@@ -259,7 +259,7 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static byte* stbi__hdr_to_ldr(float* data, int x, int y, int comp)
+		internal static byte* stbi__hdr_to_ldr(float* data, int x, int y, int comp)
 		{
 			var i = 0;
 			var k = 0;
@@ -306,7 +306,7 @@ namespace StbImageSharp
 			return output;
 		}
 
-		public static int stbi__hdr_test_core(stbi__context s, string signature)
+		internal static int stbi__hdr_test_core(stbi__context s, string signature)
 		{
 			var i = 0;
 			for (i = 0; i < signature.Length; ++i)
@@ -316,7 +316,7 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static sbyte* stbi__hdr_gettoken(stbi__context z, sbyte* buffer)
+		internal static sbyte* stbi__hdr_gettoken(stbi__context z, sbyte* buffer)
 		{
 			var len = 0;
 			sbyte c = 0;
@@ -340,7 +340,7 @@ namespace StbImageSharp
 			return buffer;
 		}
 
-		public static void stbi__hdr_convert(float* output, byte* input, int req_comp)
+		internal static void stbi__hdr_convert(float* output, byte* input, int req_comp)
 		{
 			if (input[3] != 0)
 			{

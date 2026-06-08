@@ -7,26 +7,26 @@ namespace StbImageSharp
 {
 	unsafe partial class StbImage
 	{
-		public delegate void delegate0(byte* arg0, int arg1, short* arg2);
+		internal delegate void delegate0(byte* arg0, int arg1, short* arg2);
 
-		public delegate void delegate1(byte* arg0, byte* arg1, byte* arg2, byte* arg3, int arg4, int arg5);
+		internal delegate void delegate1(byte* arg0, byte* arg1, byte* arg2, byte* arg3, int arg4, int arg5);
 
-		public delegate byte* delegate2(byte* arg0, byte* arg1, byte* arg2, int arg3, int arg4);
+		internal delegate byte* delegate2(byte* arg0, byte* arg1, byte* arg2, int arg3, int arg4);
 
-		public static uint[] stbi__bmask =
+		internal static uint[] stbi__bmask =
 			{ 0, 1, 3, 7, 15, 31, 63, 127, 255, 511, 1023, 2047, 4095, 8191, 16383, 32767, 65535 };
 
-		public static int[] stbi__jbias =
+		internal static int[] stbi__jbias =
 			{ 0, -1, -3, -7, -15, -31, -63, -127, -255, -511, -1023, -2047, -4095, -8191, -16383, -32767 };
 
-		public static byte[] stbi__jpeg_dezigzag =
+		internal static byte[] stbi__jpeg_dezigzag =
 		{
 			0, 1, 8, 16, 9, 2, 3, 10, 17, 24, 32, 25, 18, 11, 4, 5, 12, 19, 26, 33, 40, 48, 41, 34, 27, 20, 13, 6, 7,
 			14, 21, 28, 35, 42, 49, 56, 57, 50, 43, 36, 29, 22, 15, 23, 30, 37, 44, 51, 58, 59, 52, 45, 38, 31, 39, 46,
 			53, 60, 61, 54, 47, 55, 62, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63, 63
 		};
 
-		public static int stbi__jpeg_test(stbi__context s)
+		internal static int stbi__jpeg_test(stbi__context s)
 		{
 			var r = 0;
 			var j = new stbi__jpeg();
@@ -39,7 +39,7 @@ namespace StbImageSharp
 			return r;
 		}
 
-		public static void* stbi__jpeg_load(stbi__context s, int* x, int* y, int* comp, int req_comp,
+		internal static void* stbi__jpeg_load(stbi__context s, int* x, int* y, int* comp, int req_comp,
 			stbi__result_info* ri)
 		{
 			byte* result;
@@ -52,7 +52,7 @@ namespace StbImageSharp
 			return result;
 		}
 
-		public static int stbi__jpeg_info(stbi__context s, int* x, int* y, int* comp)
+		internal static int stbi__jpeg_info(stbi__context s, int* x, int* y, int* comp)
 		{
 			var result = 0;
 			var j = new stbi__jpeg();
@@ -63,7 +63,7 @@ namespace StbImageSharp
 			return result;
 		}
 
-		public static int stbi__build_huffman(stbi__huffman* h, int* count)
+		internal static int stbi__build_huffman(stbi__huffman* h, int* count)
 		{
 			var i = 0;
 			var j = 0;
@@ -115,7 +115,7 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static void stbi__build_fast_ac(short[] fast_ac, stbi__huffman* h)
+		internal static void stbi__build_fast_ac(short[] fast_ac, stbi__huffman* h)
 		{
 			var i = 0;
 			for (i = 0; i < 1 << 9; ++i)
@@ -141,7 +141,7 @@ namespace StbImageSharp
 			}
 		}
 
-		public static void stbi__grow_buffer_unsafe(stbi__jpeg j)
+		internal static void stbi__grow_buffer_unsafe(stbi__jpeg j)
 		{
 			do
 			{
@@ -165,7 +165,7 @@ namespace StbImageSharp
 			} while (j.code_bits <= 24);
 		}
 
-		public static int stbi__jpeg_huff_decode(stbi__jpeg j, stbi__huffman* h)
+		internal static int stbi__jpeg_huff_decode(stbi__jpeg j, stbi__huffman* h)
 		{
 			uint temp = 0;
 			var c = 0;
@@ -205,7 +205,7 @@ namespace StbImageSharp
 			return h->values[c];
 		}
 
-		public static int stbi__extend_receive(stbi__jpeg j, int n)
+		internal static int stbi__extend_receive(stbi__jpeg j, int n)
 		{
 			uint k = 0;
 			var sgn = 0;
@@ -221,7 +221,7 @@ namespace StbImageSharp
 			return (int)(k + (stbi__jbias[n] & (sgn - 1)));
 		}
 
-		public static int stbi__jpeg_get_bits(stbi__jpeg j, int n)
+		internal static int stbi__jpeg_get_bits(stbi__jpeg j, int n)
 		{
 			uint k = 0;
 			if (j.code_bits < n)
@@ -235,7 +235,7 @@ namespace StbImageSharp
 			return (int)k;
 		}
 
-		public static int stbi__jpeg_get_bit(stbi__jpeg j)
+		internal static int stbi__jpeg_get_bit(stbi__jpeg j)
 		{
 			uint k = 0;
 			if (j.code_bits < 1)
@@ -248,7 +248,7 @@ namespace StbImageSharp
 			return (int)(k & 0x80000000);
 		}
 
-		public static int stbi__jpeg_decode_block(stbi__jpeg j, short* data, stbi__huffman* hdc, stbi__huffman* hac,
+		internal static int stbi__jpeg_decode_block(stbi__jpeg j, short* data, stbi__huffman* hdc, stbi__huffman* hac,
 			short[] fac, int b, ushort[] dequant)
 		{
 			var diff = 0;
@@ -316,7 +316,7 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static int stbi__jpeg_decode_block_prog_dc(stbi__jpeg j, short* data, stbi__huffman* hdc, int b)
+		internal static int stbi__jpeg_decode_block_prog_dc(stbi__jpeg j, short* data, stbi__huffman* hdc, int b)
 		{
 			var diff = 0;
 			var dc = 0;
@@ -349,7 +349,7 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static int stbi__jpeg_decode_block_prog_ac(stbi__jpeg j, short* data, stbi__huffman* hac, short[] fac)
+		internal static int stbi__jpeg_decode_block_prog_ac(stbi__jpeg j, short* data, stbi__huffman* hac, short[] fac)
 		{
 			var k = 0;
 			if (j.spec_start == 0)
@@ -498,7 +498,7 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static void stbi__idct_block(byte* _out_, int out_stride, short* data)
+		internal static void stbi__idct_block(byte* _out_, int out_stride, short* data)
 		{
 			var i = 0;
 			var val = stackalloc int[64];
@@ -638,7 +638,7 @@ namespace StbImageSharp
 			}
 		}
 
-		public static byte stbi__get_marker(stbi__jpeg j)
+		internal static byte stbi__get_marker(stbi__jpeg j)
 		{
 			byte x = 0;
 			if (j.marker != 0xff)
@@ -657,7 +657,7 @@ namespace StbImageSharp
 			return x;
 		}
 
-		public static void stbi__jpeg_reset(stbi__jpeg j)
+		internal static void stbi__jpeg_reset(stbi__jpeg j)
 		{
 			j.code_bits = 0;
 			j.code_buffer = 0;
@@ -668,7 +668,7 @@ namespace StbImageSharp
 			j.eob_run = 0;
 		}
 
-		public static int stbi__parse_entropy_coded_data(stbi__jpeg z)
+		internal static int stbi__parse_entropy_coded_data(stbi__jpeg z)
 		{
 			stbi__jpeg_reset(z);
 			if (z.progressive == 0)
@@ -837,14 +837,14 @@ namespace StbImageSharp
 			}
 		}
 
-		public static void stbi__jpeg_dequantize(short* data, ushort[] dequant)
+		internal static void stbi__jpeg_dequantize(short* data, ushort[] dequant)
 		{
 			var i = 0;
 			for (i = 0; i < 64; ++i)
 				data[i] *= (short)dequant[i];
 		}
 
-		public static void stbi__jpeg_finish(stbi__jpeg z)
+		internal static void stbi__jpeg_finish(stbi__jpeg z)
 		{
 			if (z.progressive != 0)
 			{
@@ -867,7 +867,7 @@ namespace StbImageSharp
 			}
 		}
 
-		public static int stbi__process_marker(stbi__jpeg z, int m)
+		internal static int stbi__process_marker(stbi__jpeg z, int m)
 		{
 			var L = 0;
 			switch (m)
@@ -1003,7 +1003,7 @@ namespace StbImageSharp
 			return stbi__err("unknown marker");
 		}
 
-		public static int stbi__process_scan_header(stbi__jpeg z)
+		internal static int stbi__process_scan_header(stbi__jpeg z)
 		{
 			var i = 0;
 			var Ls = stbi__get16be(z.s);
@@ -1058,7 +1058,7 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static int stbi__free_jpeg_components(stbi__jpeg z, int ncomp, int why)
+		internal static int stbi__free_jpeg_components(stbi__jpeg z, int ncomp, int why)
 		{
 			var i = 0;
 			for (i = 0; i < ncomp; ++i)
@@ -1087,7 +1087,7 @@ namespace StbImageSharp
 			return why;
 		}
 
-		public static int stbi__process_frame_header(stbi__jpeg z, int scan)
+		internal static int stbi__process_frame_header(stbi__jpeg z, int scan)
 		{
 			var s = z.s;
 			var Lf = 0;
@@ -1196,7 +1196,7 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static int stbi__decode_jpeg_header(stbi__jpeg z, int scan)
+		internal static int stbi__decode_jpeg_header(stbi__jpeg z, int scan)
 		{
 			var m = 0;
 			z.jfif = 0;
@@ -1227,7 +1227,7 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static byte stbi__skip_jpeg_junk_at_end(stbi__jpeg j)
+		internal static byte stbi__skip_jpeg_junk_at_end(stbi__jpeg j)
 		{
 			while (stbi__at_eof(j.s) == 0)
 			{
@@ -1245,7 +1245,7 @@ namespace StbImageSharp
 			return 0xff;
 		}
 
-		public static int stbi__decode_jpeg_image(stbi__jpeg j)
+		internal static int stbi__decode_jpeg_image(stbi__jpeg j)
 		{
 			var m = 0;
 			for (m = 0; m < 4; m++)
@@ -1294,12 +1294,12 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static byte* resample_row_1(byte* _out_, byte* in_near, byte* in_far, int w, int hs)
+		internal static byte* resample_row_1(byte* _out_, byte* in_near, byte* in_far, int w, int hs)
 		{
 			return in_near;
 		}
 
-		public static byte* stbi__resample_row_v_2(byte* _out_, byte* in_near, byte* in_far, int w, int hs)
+		internal static byte* stbi__resample_row_v_2(byte* _out_, byte* in_near, byte* in_far, int w, int hs)
 		{
 			var i = 0;
 			for (i = 0; i < w; ++i)
@@ -1308,7 +1308,7 @@ namespace StbImageSharp
 			return _out_;
 		}
 
-		public static byte* stbi__resample_row_h_2(byte* _out_, byte* in_near, byte* in_far, int w, int hs)
+		internal static byte* stbi__resample_row_h_2(byte* _out_, byte* in_near, byte* in_far, int w, int hs)
 		{
 			var i = 0;
 			var input = in_near;
@@ -1332,7 +1332,7 @@ namespace StbImageSharp
 			return _out_;
 		}
 
-		public static byte* stbi__resample_row_hv_2(byte* _out_, byte* in_near, byte* in_far, int w, int hs)
+		internal static byte* stbi__resample_row_hv_2(byte* _out_, byte* in_near, byte* in_far, int w, int hs)
 		{
 			var i = 0;
 			var t0 = 0;
@@ -1357,7 +1357,7 @@ namespace StbImageSharp
 			return _out_;
 		}
 
-		public static byte* stbi__resample_row_generic(byte* _out_, byte* in_near, byte* in_far, int w, int hs)
+		internal static byte* stbi__resample_row_generic(byte* _out_, byte* in_near, byte* in_far, int w, int hs)
 		{
 			var i = 0;
 			var j = 0;
@@ -1368,7 +1368,7 @@ namespace StbImageSharp
 			return _out_;
 		}
 
-		public static void stbi__YCbCr_to_RGB_row(byte* _out_, byte* y, byte* pcb, byte* pcr, int count, int step)
+		internal static void stbi__YCbCr_to_RGB_row(byte* _out_, byte* y, byte* pcb, byte* pcr, int count, int step)
 		{
 			var i = 0;
 			for (i = 0; i < count; ++i)
@@ -1418,19 +1418,19 @@ namespace StbImageSharp
 			}
 		}
 
-		public static void stbi__setup_jpeg(stbi__jpeg j)
+		internal static void stbi__setup_jpeg(stbi__jpeg j)
 		{
 			j.idct_block_kernel = stbi__idct_block;
 			j.YCbCr_to_RGB_kernel = stbi__YCbCr_to_RGB_row;
 			j.resample_row_hv_2_kernel = stbi__resample_row_hv_2;
 		}
 
-		public static void stbi__cleanup_jpeg(stbi__jpeg j)
+		internal static void stbi__cleanup_jpeg(stbi__jpeg j)
 		{
 			stbi__free_jpeg_components(j, j.s.img_n, 0);
 		}
 
-		public static byte* load_jpeg_image(stbi__jpeg z, int* out_x, int* out_y, int* comp, int req_comp)
+		internal static byte* load_jpeg_image(stbi__jpeg z, int* out_x, int* out_y, int* comp, int req_comp)
 		{
 			var n = 0;
 			var decode_n = 0;
@@ -1639,7 +1639,7 @@ namespace StbImageSharp
 			}
 		}
 
-		public static int stbi__jpeg_info_raw(stbi__jpeg j, int* x, int* y, int* comp)
+		internal static int stbi__jpeg_info_raw(stbi__jpeg j, int* x, int* y, int* comp)
 		{
 			if (stbi__decode_jpeg_header(j, STBI__SCAN_header) == 0)
 			{
@@ -1657,85 +1657,85 @@ namespace StbImageSharp
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
-		public struct stbi__huffman
+		internal struct stbi__huffman
 		{
-			public fixed byte fast[512];
-			public fixed ushort code[256];
-			public fixed byte values[256];
-			public fixed byte size[257];
-			public fixed uint maxcode[18];
-			public fixed int delta[17];
+			internal fixed byte fast[512];
+			internal fixed ushort code[256];
+			internal fixed byte values[256];
+			internal fixed byte size[257];
+			internal fixed uint maxcode[18];
+			internal fixed int delta[17];
 		}
 
-		public class stbi__jpeg
+		internal class stbi__jpeg
 		{
-			public int app14_color_transform;
-			public int code_bits;
-			public uint code_buffer;
-			public ushort[][] dequant = Utility.CreateArray<ushort>(4, 64);
-			public int eob_run;
-			public short[][] fast_ac = Utility.CreateArray<short>(4, 512);
-			public stbi__huffman[] huff_ac = new stbi__huffman[4];
-			public stbi__huffman[] huff_dc = new stbi__huffman[4];
-			public delegate0 idct_block_kernel;
-			public unnamed1[] img_comp = new unnamed1[4];
-			public int img_h_max;
-			public int img_mcu_h;
-			public int img_mcu_w;
-			public int img_mcu_x;
-			public int img_mcu_y;
-			public int img_v_max;
-			public int jfif;
-			public byte marker;
-			public int nomore;
-			public int[] order = new int[4];
-			public int progressive;
-			public delegate2 resample_row_hv_2_kernel;
-			public int restart_interval;
-			public int rgb;
-			public stbi__context s;
-			public int scan_n;
-			public int spec_end;
-			public int spec_start;
-			public int succ_high;
-			public int succ_low;
-			public int todo;
-			public delegate1 YCbCr_to_RGB_kernel;
+			internal int app14_color_transform;
+			internal int code_bits;
+			internal uint code_buffer;
+			internal ushort[][] dequant = Utility.CreateArray<ushort>(4, 64);
+			internal int eob_run;
+			internal short[][] fast_ac = Utility.CreateArray<short>(4, 512);
+			internal stbi__huffman[] huff_ac = new stbi__huffman[4];
+			internal stbi__huffman[] huff_dc = new stbi__huffman[4];
+			internal delegate0 idct_block_kernel;
+			internal unnamed1[] img_comp = new unnamed1[4];
+			internal int img_h_max;
+			internal int img_mcu_h;
+			internal int img_mcu_w;
+			internal int img_mcu_x;
+			internal int img_mcu_y;
+			internal int img_v_max;
+			internal int jfif;
+			internal byte marker;
+			internal int nomore;
+			internal int[] order = new int[4];
+			internal int progressive;
+			internal delegate2 resample_row_hv_2_kernel;
+			internal int restart_interval;
+			internal int rgb;
+			internal stbi__context s;
+			internal int scan_n;
+			internal int spec_end;
+			internal int spec_start;
+			internal int succ_high;
+			internal int succ_low;
+			internal int todo;
+			internal delegate1 YCbCr_to_RGB_kernel;
 
 			[StructLayout(LayoutKind.Sequential)]
-			public struct unnamed1
+			internal struct unnamed1
 			{
-				public int id;
-				public int h;
-				public int v;
-				public int tq;
-				public int hd;
-				public int ha;
-				public int dc_pred;
-				public int x;
-				public int y;
-				public int w2;
-				public int h2;
-				public byte* data;
-				public void* raw_data;
-				public void* raw_coeff;
-				public byte* linebuf;
-				public short* coeff;
-				public int coeff_w;
-				public int coeff_h;
+				internal int id;
+				internal int h;
+				internal int v;
+				internal int tq;
+				internal int hd;
+				internal int ha;
+				internal int dc_pred;
+				internal int x;
+				internal int y;
+				internal int w2;
+				internal int h2;
+				internal byte* data;
+				internal void* raw_data;
+				internal void* raw_coeff;
+				internal byte* linebuf;
+				internal short* coeff;
+				internal int coeff_w;
+				internal int coeff_h;
 			}
 		}
 
-		public class stbi__resample
+		internal class stbi__resample
 		{
-			public int hs;
-			public byte* line0;
-			public byte* line1;
-			public delegate2 resample;
-			public int vs;
-			public int w_lores;
-			public int ypos;
-			public int ystep;
+			internal int hs;
+			internal byte* line0;
+			internal byte* line1;
+			internal delegate2 resample;
+			internal int vs;
+			internal int w_lores;
+			internal int ypos;
+			internal int ystep;
 		}
 	}
 }

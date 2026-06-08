@@ -6,14 +6,14 @@ namespace StbImageSharp
 {
 	unsafe partial class StbImage
 	{
-		public static int stbi__psd_test(stbi__context s)
+		internal static int stbi__psd_test(stbi__context s)
 		{
 			var r = stbi__get32be(s) == 0x38425053 ? 1 : 0;
 			stbi__rewind(s);
 			return r;
 		}
 
-		public static void* stbi__psd_load(stbi__context s, int* x, int* y, int* comp, int req_comp,
+		internal static void* stbi__psd_load(stbi__context s, int* x, int* y, int* comp, int req_comp,
 			stbi__result_info* ri, int bpc)
 		{
 			var pixelCount = 0;
@@ -177,7 +177,7 @@ namespace StbImageSharp
 			return _out_;
 		}
 
-		public static int stbi__psd_info(stbi__context s, int* x, int* y, int* comp)
+		internal static int stbi__psd_info(stbi__context s, int* x, int* y, int* comp)
 		{
 			var channelCount = 0;
 			var dummy = 0;
@@ -227,7 +227,7 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static int stbi__psd_is16(stbi__context s)
+		internal static int stbi__psd_is16(stbi__context s)
 		{
 			var channelCount = 0;
 			var depth = 0;
@@ -261,7 +261,7 @@ namespace StbImageSharp
 			return 1;
 		}
 
-		public static int stbi__psd_decode_rle(stbi__context s, byte* p, int pixelCount)
+		internal static int stbi__psd_decode_rle(stbi__context s, byte* p, int pixelCount)
 		{
 			var count = 0;
 			var nleft = 0;
