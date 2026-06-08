@@ -19,7 +19,7 @@ static unsafe partial class StbImage
 	/// </summary>
 	public static int NativeAllocations => MemoryStats.Allocations;
 
-	internal class stbi__context
+	public class stbi__context
 	{
 		private readonly Stream _stream;
 

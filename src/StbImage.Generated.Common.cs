@@ -768,7 +768,7 @@ namespace StbImageSharp
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
-		internal struct stbi__result_info
+		public struct stbi__result_info
 		{
 			internal int bits_per_channel;
 			internal int num_channels;
